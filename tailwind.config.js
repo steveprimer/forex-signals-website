@@ -8,7 +8,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        customgray: "#101010ff", // your true grey
+        customgray: "#0c0c0cff", // your true grey
+      },
+      boxShadow: {
+        // Defines a soft, spread-out shadow to match your image
+        "soft-glow": "0px 8px 32px rgba(0, 0, 0, 0.3)",
       },
     },
   },

@@ -94,8 +94,8 @@ const Hero = () => {
           // Buttons now use flex-1 to expand equally on mobile and revert on larger screens
           className="relative flex-1 sm:flex-initial sm:w-auto backdrop-blur-md bg-white/10 border border-white/20 text-white font-semibold px-4 sm:px-8 py-3 rounded-[12px] hover:bg-white/20 transition-colors duration-300 overflow-hidden text-sm sm:text-base"
         >
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] bg-cyan-400/20 rounded-full blur-2xl" />
-          <div className="absolute top-1/V2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] bg-purple-500/20 rounded-full blur-2xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] bg-cyan-400 rounded-full blur-2xl animate-[pulse_4s_ease-in-out_infinite]" />
+          <div className="absolute top-1/V2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] bg-purple-500 rounded-full blur-2xl animate-[pulse_4s_ease-in-out_infinite]" />
           <span className="relative z-10">Get FREE Access</span>
         </a>
 
@@ -105,8 +105,8 @@ const Hero = () => {
           // Buttons now use flex-1 to expand equally on mobile and revert on larger screens
           className="relative flex-1 sm:flex-initial sm:w-auto backdrop-blur-md bg-white/10 border border-white/20 text-white font-semibold px-4 sm:px-8 py-3 rounded-[12px] hover:bg-white/20 transition-colors duration-300 overflow-hidden text-sm sm:text-base"
         >
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] bg-cyan-400/20 rounded-full blur-2xl" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] bg-purple-500/20 rounded-full blur-2xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] bg-cyan-400/20 rounded-full blur-2xl animate-[pulse_4s_ease-in-out_infinite]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] bg-purple-500/20 rounded-full blur-2xl animate-[pulse_4s_ease-in-out_infinite]" />
           <span className="relative z-10">Watch How It Works</span>
         </a>
       </motion.div>

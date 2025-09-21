@@ -10,7 +10,7 @@ const VideoSection = () => {
   return (
     <section className="py-0 sm:py-24 px-4 sm:px-8">
       {/* Added the explainer text here */}
-      <p className="text-center text-lg text-gray-400 mb-12">
+      <p className="text-center text-lg text-green-400 mb-12">
         [Not sure how it works? Watch the short explainer.]
       </p>
 

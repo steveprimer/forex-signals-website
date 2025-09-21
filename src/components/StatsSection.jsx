@@ -52,8 +52,8 @@ const StatsSection = () => {
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
         {/* Crystal Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-[30%] -translate-y-1/2 w-[450px] h-[450px] bg-cyan-400/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-[70%] -translate-y-1/2 w-[450px] h-[450px] bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-[30%] -translate-y-1/2 w-[450px] h-[450px] bg-cyan-400/50 animate-[pulse_4s_ease-in-out_infinite] rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-[70%] -translate-y-1/2 w-[450px] h-[450px] bg-purple-500/50 animate-[pulse_4s_ease-in-out_infinite] rounded-full blur-3xl pointer-events-none" />
 
         {/* Stats */}
         <div className="relative grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/10">

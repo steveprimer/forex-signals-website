@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import VideoSection from "@/components/VideoSection"; // 1. Import the new component
 import StatsSection from "@/components/StatsSection";
 import Services from "@/components/Services";
+import WhyChooseUs from "@/components/WhyChooseUs";
 
 export default function HomePage() {
   return (
@@ -13,6 +14,7 @@ export default function HomePage() {
       <VideoSection />
       <Services />
       {/* You can add the rest of your page content here */}
+      <WhyChooseUs />
     </main>
   );
 }

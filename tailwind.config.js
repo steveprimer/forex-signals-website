@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       colors: {
         customgray: "#0c0c0cff", // your true grey
+        "card-bg": "#F0F0F0",
       },
       boxShadow: {
         // Defines a soft, spread-out shadow to match your image

@@ -3,8 +3,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 
-// Data for the service cards.
-// --- CHANGE: The order of card data has been reversed. ---
+// --- DATA (Unchanged) ---
 const serviceCards = [
   {
     titleLines: ["Education", "Included"],
@@ -36,52 +35,41 @@ const serviceCards = [
   },
 ];
 
-// Reusable Card Component
-const ServiceCard = ({ card, style }) => (
-  <motion.div
-    style={style}
-    className="absolute inset-0 flex items-center justify-center p-6 pt-6"
-  >
-    <div className="w-full max-w-4xl">
-      <div className="relative backdrop-blur-lg bg-[#0A0A0A]/40 border border-white/5 rounded-3xl aspect-[4/3] md:aspect-video overflow-hidden">
-        {/* Glassmorphism Glow Effects */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-[30%] -translate-y-1/2 w-[450px] h-[450px] bg-cyan-400/50 animate-[pulse_4s_ease-in-out_infinite] rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-[70%] -translate-y-1/2 w-[450px] h-[450px] bg-purple-500/50 animate-[pulse_4s_ease-in-out_infinite] rounded-full blur-3xl pointer-events-none"></div>
-
-        {/* --- CHANGE: Improved internal padding and vertical alignment. --- */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 h-full relative p-12 items-center">
-          {/* Column 1: Text */}
-          <div className="space-y-4 text-center lg:text-left">
-            <h3 className="text-4xl md:text-5xl font-bold leading-tight tracking-tighter">
-              {card.titleLines[0]}
-              <br />
-              {card.titleLines[1]}
-            </h3>
-            <p className="text-gray-200 text-lg md:text-xl leading-relaxed mt-4">
-              {card.description}
-            </p>
-          </div>
-          {/* Column 2: Video */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="w-full max-w-sm aspect-square bg-black rounded-2xl overflow-hidden">
-              <video
-                src={card.videoSrc}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
+// --- CARD COMPONENT ---
+// --- CARD COMPONENT (WITH RESPONSIVE DESKTOP FIX) ---
+const ServiceCard = ({ card }) => (
+  // CHANGE 1: The aspect ratio is now responsive. Tall on mobile, wide on large screens.
+  <div className="relative w-full max-w-4xl rounded-3xl border border-white/20 bg-gradient-to-br from-gray-950/10 to-white/5 backdrop-blur-lg overflow-hidden aspect-[9/14] lg:aspect-video">
+    {/* CHANGE 2: The layout switches from a single column on mobile to a two-column grid on large screens. */}
+    <div className="flex flex-col lg:grid lg:grid-cols-2 lg:items-center h-full justify-center gap-10 relative px-6 pb-6 pt-10 sm:px-8 sm:pb-8 sm:pt-12 lg:px-12 lg:pb-12 lg:pt-16 z-10">
+      <div className="w-full space-y-6 text-left">
+        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight tracking-tighter">
+          {card.titleLines[0]}
+          <br />
+          {card.titleLines[1]}
+        </h3>
+        <p className="text-gray-200 text-sm sm:text-base md:text-lg leading-relaxed">
+          {card.description}
+        </p>
+      </div>
+      <div className="flex justify-center lg:justify-end w-full">
+        <div className="w-full max-w-md aspect-square bg-black rounded-2xl overflow-hidden">
+          <video
+            src={card.videoSrc}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+            aria-hidden="true"
+          />
         </div>
       </div>
     </div>
-  </motion.div>
+  </div>
 );
 
-// --- ANIMATION COMPONENT AND VARIANTS ---
-
+// --- ANIMATED PARAGRAPH ---
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: (i = 1) => ({
@@ -102,16 +90,16 @@ const wordVariants = {
 const AnimatedParagraph = ({ lines }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
-
   return (
     <motion.p
       ref={ref}
       variants={containerVariants}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      className="text-lg md:text-xl text-gray-400 mt-12 max-w-3xl mx-auto"
+      className="text-base md:text-lg text-gray-400 mt-20 max-w-lg mx-auto px-4"
     >
       {lines.map((line, lineIndex) => (
+        // BEST PRACTICE: Added key prop to Fragment
         <React.Fragment key={lineIndex}>
           {line.split(" ").map((word, wordIndex) => (
             <motion.span
@@ -130,62 +118,74 @@ const AnimatedParagraph = ({ lines }) => {
 };
 
 // --- MAIN SERVICES COMPONENT ---
-
 const Services = () => {
   const scrollContainerRef = useRef(null);
-
   const { scrollYProgress } = useScroll({
     target: scrollContainerRef,
     offset: ["start start", "end end"],
   });
 
-  // Card Animations
-  const scale1 = useTransform(scrollYProgress, [0.05, 0.2], [1.05, 1]);
-  const y2 = useTransform(scrollYProgress, [0.2, 0.4], ["100%", "0%"]);
-  const scale2 = useTransform(scrollYProgress, [0.2, 0.4], [1.05, 1]);
-  const y3 = useTransform(scrollYProgress, [0.4, 0.6], ["100%", "0%"]);
-  const scale3 = useTransform(scrollYProgress, [0.4, 0.6], [1.05, 1]);
-  const y4 = useTransform(scrollYProgress, [0.6, 0.8], ["100%", "0%"]);
-  const scale4 = useTransform(scrollYProgress, [0.6, 0.8], [1.05, 1]);
+  // REFACTOR: Animation styles are now generated dynamically based on the number of cards.
+  // This makes it easy to add or remove cards without breaking the animation.
+  const cardStyles = serviceCards.map((_, index) => {
+    if (index === 0) {
+      return { y: "0%", zIndex: 10 };
+    }
+    const totalAnimatedCards = serviceCards.length - 1;
+    const progressStep = 1 / totalAnimatedCards;
 
-  const cardStyles = [
-    { scale: scale1, zIndex: 10 },
-    { y: y2, scale: scale2, zIndex: 20 },
-    { y: y3, scale: scale3, zIndex: 30 },
-    { y: y4, scale: scale4, zIndex: 40 },
-  ];
+    const startRange = progressStep * (index - 1);
+    const endRange = progressStep * index;
 
-  // Text for the animated paragraph
+    const y = useTransform(
+      scrollYProgress,
+      [startRange, endRange],
+      ["100%", "0%"]
+    );
+
+    return { y, zIndex: (index + 1) * 10 };
+  });
+
   const paragraphLines = [
-    "Copytrading is simple, our team of 7 professional traders analyzes the market and",
-    "makes the right decisions. He shares the exact moves and you copy his",
-    "portfolio. Simple, no previous experience required.",
+    "Copytrading is simple. Our team of 7 professional",
+    "traders analyzes the market and makes the right",
+    "decisions. He shares the exact moves and you copy",
+    "his portfolio. Simple, no experience required.",
     "All that – for free.",
   ];
 
   return (
-    <div className="bg-black text-white antialiased">
-      {/* SECTION 1: Standard Header Content */}
-      <div className="pt-12 py-0 px-6 flex flex-col items-center text-center">
-        <div className="inline-block rounded-full px-4 py-1.5 mb-8 text-sm font-bold text-green-500">
+    <section className="relative bg-black text-white pt-40">
+      <div className="flex flex-col items-center text-center px-4 sm:px-6 pb-0">
+        <div className="inline-block rounded-full px-4 py-1.5 mb-12 text-sm font-bold text-green-500">
           [ Our Services ]
         </div>
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter max-w-4xl mx-auto">
-          Clear Signals. For every trader. Without Any Cost.
+        <h1 className="text-4xl sm:text-6xl font-bold tracking-tighter max-w-2xl mx-auto">
+          Clear Signals.
+          <br className="md:hidden" /> For Every Trader.
+          <br className="md:hidden" /> Without Any Cost.
         </h1>
         <AnimatedParagraph lines={paragraphLines} />
       </div>
 
-      {/* SECTION 2: Sticky Animation Container */}
-      <div ref={scrollContainerRef} className="relative h-[500vh]">
-        <div className="sticky top-0 h-screen overflow-hidden">
-          {/* Animated Cards are mapped here */}
-          {serviceCards.map((card, index) => (
-            <ServiceCard key={card.id} card={card} style={cardStyles[index]} />
-          ))}
+      <div className="relative -mt-24">
+        {/* READABILITY: Added a comment to explain this value controls scroll speed. */}
+        {/* Increase this value (e.g., h-[200vh]) to make the scroll animation slower. */}
+        <div ref={scrollContainerRef} className="relative h-[150vh]">
+          <div className="sticky top-0 h-screen overflow-hidden">
+            {serviceCards.map((card, index) => (
+              <motion.div
+                key={card.id}
+                className="absolute top-0 left-0 w-full h-full flex items-center md:items-end justify-center px-6 md:px-12 md:pb-16"
+                style={cardStyles[index]}
+              >
+                <ServiceCard card={card} />
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

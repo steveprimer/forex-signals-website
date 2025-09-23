@@ -96,7 +96,7 @@ const AnimatedParagraph = ({ lines }) => {
       variants={containerVariants}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      className="text-base md:text-lg text-gray-400 mt-20 max-w-lg mx-auto px-4"
+      className="text-base md:text-lg text-gray-400 mt-12 max-w-lg mx-auto px-4"
     >
       {lines.map((line, lineIndex) => (
         // BEST PRACTICE: Added key prop to Fragment
@@ -153,11 +153,17 @@ const Services = () => {
     "his portfolio. Simple, no experience required.",
     "All that – for free.",
   ];
+  const desktopParagraphLines = [
+    "Copytrading is simple. Our team of 7 professional traders",
+    "analyzes the market and makes the right decisions. He",
+    "shares the exact moves and you copy his portfolio.",
+    "Simple, no experience required. All that – for free.",
+  ];
 
   return (
     <section className="relative bg-customgray text-white pt-40">
       <div className="flex flex-col items-center text-center px-4 sm:px-6 pb-0">
-        <div className="inline-block rounded-full px-4 py-1.5 mb-12 text-sm font-bold text-green-500">
+        <div className="inline-block rounded-full px-4 py-1.5 mb-8 text-sm font-bold text-green-500">
           [ Our Services ]
         </div>
         <h1 className="text-4xl sm:text-6xl font-bold tracking-tighter max-w-2xl mx-auto">
@@ -165,10 +171,15 @@ const Services = () => {
           <br className="md:hidden" /> For Every Trader.
           <br className="md:hidden" /> Without Any Cost.
         </h1>
-        <AnimatedParagraph lines={paragraphLines} />
+        <div className="md:hidden">
+          <AnimatedParagraph lines={paragraphLines} />
+        </div>
+        <div className="hidden md:block">
+          <AnimatedParagraph lines={desktopParagraphLines} />
+        </div>
       </div>
 
-      <div className="relative -mt-24">
+      <div className="relative -mt-28">
         {/* READABILITY: Added a comment to explain this value controls scroll speed. */}
         {/* Increase this value (e.g., h-[200vh]) to make the scroll animation slower. */}
         <div ref={scrollContainerRef} className="relative h-[150vh]">

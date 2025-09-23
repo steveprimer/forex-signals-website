@@ -26,14 +26,16 @@ function AnimatedStat({ to, prefix = "", suffix = "", label }) {
   }, [isInView, to, prefix, suffix]);
 
   return (
-    <div className="text-center">
+    <div className="flex-1 text-center min-w-0">
       <h2
         ref={ref}
-        className="text-4xl sm:text-5xl font-bold text-white tracking-tighter"
+        className="text-3xl xs:text-4xl sm:text-5xl font-bold text-white tracking-tight leading-tight"
       >
         0
       </h2>
-      <p className="mt-2 text-sm text-gray-400 tracking-wide">{label}</p>
+      <p className="mt-1 text-xs xs:text-sm text-gray-400 tracking-wide truncate">
+        {label}
+      </p>
     </div>
   );
 }
@@ -43,27 +45,23 @@ const StatsSection = () => {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section className="py-12 sm:pt-20 sm:pb-0 px-4">
+    <section className="py-8 sm:pt-16 sm:pb-0 px-2 sm:px-4 mt-20 sm:mt-10">
       <motion.div
         ref={ref}
-        className="relative max-w-4xl mx-auto bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl shadow-soft-glow overflow-hidden"
+        className="relative max-w-full sm:max-w-4xl mx-auto bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 rounded-2xl sm:rounded-3xl shadow-soft-glow overflow-hidden"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        {/* Crystal Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-[30%] -translate-y-1/2 w-[450px] h-[450px] bg-cyan-400/50 animate-[pulse_4s_ease-in-out_infinite] rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-[70%] -translate-y-1/2 w-[450px] h-[450px] bg-purple-500/50 animate-[pulse_4s_ease-in-out_infinite] rounded-full blur-3xl pointer-events-none" />
-
-        {/* Stats */}
-        <div className="relative grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
-          <div className="py-8 px-4">
-            <AnimatedStat to={78} suffix="%" label="Win rate (rolling 90d)" />
+        {/* Stats Row */}
+        <div className="flex divide-x divide-white/10">
+          <div className="flex-1 py-6 px-2 sm:py-8 sm:px-4">
+            <AnimatedStat to={78} suffix="%" label="Win rate (90d)" />
           </div>
-          <div className="py-8 px-4">
+          <div className="flex-1 py-6 px-2 sm:py-8 sm:px-4">
             <AnimatedStat to={2450} prefix="+" label="Avg monthly pips" />
           </div>
-          <div className="py-8 px-4">
+          <div className="flex-1 py-6 px-2 sm:py-8 sm:px-4">
             <AnimatedStat to={8200} suffix="+" label="Active members" />
           </div>
         </div>

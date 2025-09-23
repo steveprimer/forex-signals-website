@@ -11,7 +11,7 @@ const Hero = () => {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
       opacity: 1,
-      transition: { staggerChildren: 0.07, delayChildren: 0.08 * i },
+      transition: { staggerChildren: 0.09, delayChildren: 0.08 * i },
     }),
   };
 
@@ -48,14 +48,14 @@ const Hero = () => {
         className="mb-6 mt-20 min-h-[2.5rem]"
         variants={buttonVariants}
       >
-        <p className="text-gray-400 text-opacity-80 text-xl sm:text-2xl font-medium tracking-wide">
+        <p className="text-gray-400 text-opacity-80 text-xl sm:text-2xl font-medium tracking-wide mt-10 md:mt-0">
           [James Riston]
         </p>
       </motion.div>
 
       {/* Animated Heading */}
       <motion.h1
-        className="text-white font-bold text-5xl md:text-7xl lg:text-8xl leading-tight max-w-7xl"
+        className="text-white font-bold text-4xl md:text-7xl lg:text-8xl leading-tight max-w-7xl mt-5 md:mt-0"
         variants={containerVariants}
       >
         {headingLines.map((line, lineIndex) => (
@@ -85,28 +85,28 @@ const Hero = () => {
 
       {/* Button Container - Now always a row, with adjusted gap for mobile */}
       <motion.div
-        className="mt-10 w-full flex flex-row items-center justify-center gap-2 sm:gap-4"
+        className="mt-20 md:mt-6 w-full flex flex-row items-center justify-center gap-7 sm:gap-4 px-10 md:px-2"
         variants={buttonVariants}
       >
-        {/* Glow Button 1 */}
+        {/* Button 1 (Primary) */}
         <a
           href="#"
-          // Buttons now use flex-1 to expand equally on mobile and revert on larger screens
-          className="relative flex-1 sm:flex-initial sm:w-auto backdrop-blur-md bg-white/10 border border-white/20 text-white font-semibold px-4 sm:px-8 py-3 rounded-[12px] hover:bg-white/20 transition-colors duration-300 overflow-hidden text-sm sm:text-base"
+          className="relative flex-1 sm:flex-initial sm:w-auto backdrop-blur-md text-white font-semibold 
+               px-3 sm:px-6 py-3 sm:py-3 rounded-lg sm:rounded-[12px] text-xs sm:text-base 
+               transition-all duration-300 overflow-hidden text-center 
+               border border-white/30 bg-gradient-to-br from-white/20 to-white/5 hover:border-white/30 active:scale-95"
         >
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] bg-cyan-400 rounded-full blur-2xl animate-[pulse_4s_ease-in-out_infinite]" />
-          <div className="absolute top-1/V2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] bg-purple-500 rounded-full blur-2xl animate-[pulse_4s_ease-in-out_infinite]" />
           <span className="relative z-10">Get FREE Access</span>
         </a>
 
-        {/* Glow Button 2 */}
+        {/* Button 2 (Secondary) */}
         <a
           href="#"
-          // Buttons now use flex-1 to expand equally on mobile and revert on larger screens
-          className="relative flex-1 sm:flex-initial sm:w-auto backdrop-blur-md bg-white/10 border border-white/20 text-white font-semibold px-4 sm:px-8 py-3 rounded-[12px] hover:bg-white/20 transition-colors duration-300 overflow-hidden text-sm sm:text-base"
+          className="relative flex-1 sm:flex-initial sm:w-auto backdrop-blur-md text-white font-semibold 
+               px-3 sm:px-6 py-3 sm:py-3 rounded-lg sm:rounded-[12px] text-xs sm:text-base 
+               transition-all duration-300 overflow-hidden text-center
+               border border-white/20 bg-gradient-to-bl from-white/20 to-white/5 hover:border-white/30 active:scale-95"
         >
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] bg-cyan-400/20 rounded-full blur-2xl animate-[pulse_4s_ease-in-out_infinite]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] bg-purple-500/20 rounded-full blur-2xl animate-[pulse_4s_ease-in-out_infinite]" />
           <span className="relative z-10">Watch How It Works</span>
         </a>
       </motion.div>

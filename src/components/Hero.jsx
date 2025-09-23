@@ -85,7 +85,7 @@ const Hero = () => {
 
       {/* Button Container - Now always a row, with adjusted gap for mobile */}
       <motion.div
-        className="mt-20 md:mt-6 w-full flex flex-row items-center justify-center gap-7 sm:gap-4 px-10 md:px-2"
+        className="mt-20 md:mt-6 w-full flex flex-row items-center justify-center gap-7 sm:gap-4 px-5 sm:px-9 md:px-2"
         variants={buttonVariants}
       >
         {/* Button 1 (Primary) */}

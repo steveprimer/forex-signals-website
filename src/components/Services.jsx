@@ -155,7 +155,7 @@ const Services = () => {
   ];
 
   return (
-    <section className="relative bg-black text-white pt-40">
+    <section className="relative bg-customgray text-white pt-40">
       <div className="flex flex-col items-center text-center px-4 sm:px-6 pb-0">
         <div className="inline-block rounded-full px-4 py-1.5 mb-12 text-sm font-bold text-green-500">
           [ Our Services ]

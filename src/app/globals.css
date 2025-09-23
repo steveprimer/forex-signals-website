@@ -1,3 +1,64 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  /* --- Style for the static white box at the bottom --- */
+  .bottom-glow-effect {
+    position: absolute;
+    bottom: 0;
+    left: 3;
+    width: 100%;
+    height: 60%; /* You can adjust this height */
+    background: linear-gradient(to top, 
+      rgba(255, 255, 255, 0), 
+      transparent
+    );
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .dark-glass-card {
+  position: relative;
+  border-radius: 2rem; /* matches your screenshot */
+  background: rgba(20, 20, 20, 0.3); /* dark glass look */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* diagonal light streak */
+.dark-glass-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at 70% 30%,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  transform: rotate(35deg);
+  pointer-events: none;
+}
+
+}
+
+@layer utilities {
+  @keyframes infinite-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  .animate-infinite-scroll {
+    animation: infinite-scroll 40s linear infinite;
+  }
+}
+

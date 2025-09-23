@@ -7,7 +7,7 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 
 export default function HomePage() {
   return (
-    <main className="bg-black min-h-screen text-white">
+    <main className="bg-customgray min-h-screen text-white">
       <Navbar />
       <Hero />
       <StatsSection />

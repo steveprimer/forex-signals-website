@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ImageLightbox from "@/components/ImageLightbox";
-import InfiniteLogoScroller from "@/components/InfiniteLogoScroller";
 
 // --- Reusable Testimonial Card Component (for Client Results) ---
 const TestimonialCard = ({
@@ -252,14 +251,13 @@ const WhyChooseUs = () => {
     <>
       <section className="py-20 sm:py-24 px-4">
         <div className="text-center">
-          <p className="text-lg text-green-400 mb-4">[Why Choose Us]</p>
+          <p className="text-center text-sm text-green-500 mb-12 rounded-full font-bold">
+            [Why Choose Us]
+          </p>
           <h2 className="text-4xl sm:text-5xl font-bold text-white tracking-tighter">
             Results & Performance.
           </h2>
         </div>
-
-        <InfiniteLogoScroller />
-
         {/* --- Single Glassmorphic Container --- */}
         <div className="max-w-7xl mx-auto mt-16 grid grid-cols-1 lg:grid-cols-5 gap-8 items-start p-6 rounded-2xl backdrop-blur-md border border-white/30 bg-gradient-to-bl from-white/20 to-white/5">
           {/* Left Column (now col-span-2) */}

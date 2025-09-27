@@ -4,6 +4,8 @@ import VideoSection from "@/components/VideoSection"; // 1. Import the new compo
 import StatsSection from "@/components/StatsSection";
 import Services from "@/components/Services";
 import WhyChooseUs from "@/components/WhyChooseUs";
+import InfiniteLogoScroller from "@/components/InfiniteLogoScroller";
+import AboutUs from "@/components/AboutUs";
 
 export default function HomePage() {
   return (
@@ -15,6 +17,8 @@ export default function HomePage() {
       <Services />
       {/* You can add the rest of your page content here */}
       <WhyChooseUs />
+      <InfiniteLogoScroller />
+      <AboutUs />
     </main>
   );
 }
